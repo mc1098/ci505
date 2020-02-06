@@ -5,12 +5,12 @@ module Week2 where
 import Prelude hiding ((||),(&&),min)
 
 {-1. Create a function exOr :: Bool -> Bool -> Bool, which acts as an
-  “exclusive or” from logic. That is, exOr x y returns true if one of x and
+ "exclusive or" from logic. That is, exOr x y returns true if one of x and
   y is true, but not both.-}
 exOr :: Bool -> Bool -> Bool
 exOr x y = not x == y
 
-{-2. Create your own version of the logical “or” (||) function. Your function
+{-2. Create your own version of the logical "or" (||) function. Your function
   should be defined as an infix function which is applied between its two
   arguments, e.g. x || y.-}
 (||) :: Bool -> Bool -> Bool
@@ -18,7 +18,7 @@ True  || _    = True
 _     || True = True
 _     || _    = False
 
-{-3. Create your own (infix) version of the logical “and”:-}
+{-3. Create your own (infix) version of the logical "and":-}
 infixl 2 &&
 (&&) :: Bool -> Bool -> Bool
 True  && True  = True

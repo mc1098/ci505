@@ -10,7 +10,7 @@ import Text.Read
 do-notation:
 import System.Random
 randomChars :: RandomGen g => g -> String
-randomChars gen = randomRs (’a’, ’z’) gen
+randomChars gen = randomRs ('a', 'z') gen
 main = do
 g <- newStdGen
 let cs = randomChars g
@@ -77,7 +77,7 @@ say n, then generates a list of n random coin tosses and prints out a message to
 user containing the percentage of the random coin tosses which
 were heads. To read command line arguments, import System.Environment
 and use the getArgs functions. getArgs returns a list of strings, so you
-need to convert the first one into a whole number – you can turn a string,
+need to convert the first one into a whole number - you can turn a string,
 s, into an Int like so:
 main = do
 .....

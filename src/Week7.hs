@@ -13,7 +13,7 @@ import Data.List
   in which each element contains one line from the log file. Test your work with
   the function testReadLogFile, provided in Log.hs. testReadLogFile takes
   your readLogFile function, a String containing the path to the log file, and
-  simply prints the contents of the list of strings. So, it’s output should match
+  simply prints the contents of the list of strings. So, it's output should match
   the original file. Use sample.log for testing (you could also use error.log but
   it is quite a large file).-}
 
@@ -23,7 +23,7 @@ readLogFile = fmap lines . readFile
 {-1.2 Exercise 2
   The next step is figuring out how to parse an individual message. However,
   perhaps the file is even more corrupted than we thought: maybe individual
-  lines are garbled. So, we can’t be sure that a line from the input will be a valid
+  lines are garbled. So, we can't be sure that a line from the input will be a valid
   LogMessage. Thus, we define a type (included in the provided Log.hs) to allow
   for the possibility of failure:
   type MaybeLogMessage = ValidLM LogMessage | InvalidLM String deriving
@@ -69,9 +69,9 @@ parseMessage s = parseMessage' $ words s
 
 
 {-1.3 Exercise 3
-  It isn’t terribly hard to make parseMessage work over all the lines in a file.
+  It isn't terribly hard to make parseMessage work over all the lines in a file.
   But, doing so would produce a list of MaybeLogMessages, where we really just
-  want a list of LogMessages for further processing – let’s throw out the invalid
+  want a list of LogMessages for further processing - let's throw out the invalid
   messages. Write a function
   validMessagesOnly :: [MaybeLogMessage] -> [LogMessage]
   that throws out invalid messages.-}
@@ -99,14 +99,14 @@ parse path = validMessagesOnly . map parseMessage <$> readLogFile path
 
 {-2.1 Exercise 5
   Any sorting function is going to need to compare two LogMessages to see which
-  one should come first. But, since we’ve just created the LogMessage type, there
+  one should come first. But, since we've just created the LogMessage type, there
   is no way for the computer to know how to compare two of them. We must
   write a comparison function! In general, comparing two items for ordering can
   yield one of three results: less-than, equal-to, or greater-than. Haskell codifies
   this idea as a datatype
   data Ordering = LT | EQ | GT
   Ordering is part of the Prelude (the set of things automatically included),
-  so its definition doesn’t appear in Log.hs nor should it appear in your code.
+  so its definition doesn't appear in Log.hs nor should it appear in your code.
   Define a function
   compareMsgs :: LogMessage -> LogMessage -> Ordering
   that compares two LogMessages based on their timestamps. Here are some
@@ -116,7 +116,7 @@ parse path = validMessagesOnly . map parseMessage <$> readLogFile path
   growing...") (LogMessage Info 208 "the Weighted Companion Cube cannot
   talk")
   == LT
-  compareMsgs (LogMessage (Error 101) 2001 "My God! It’s full of stars!")
+  compareMsgs (LogMessage (Error 101) 2001 "My God! It's full of stars!")
   (LogMessage Info 2001
   "Daisy, Daisy, give me your answer do.")
   == EQ-}
@@ -136,8 +136,8 @@ sortMessages = sortBy compareMsgs
 
 {-3.1 Exercise 7
   Now that we can sort the log messages, the only thing left to do is extract the
-  relevant information. We have decided that “relevant” means “errors with a
-  severity of at least 50”. Write a function
+  relevant information. We have decided that "relevant" means "errors with a
+  severity of at least 50". Write a function
   whatWentWrong :: [LogMessage] -> [(TimeStamp, String)]
   which takes an unsorted list of LogMessages and returns a list of the messages
   corresponding to any errors with a severity of 50 or greater, sorted by

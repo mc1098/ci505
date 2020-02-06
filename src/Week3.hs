@@ -9,18 +9,18 @@ module Week3 where
   If we make Nat an instance of the Num typeclass, we can use Nat values wherever
   a numeric type is expected. In order to do this we have to provide definitions
   for the following functions:
-  • Addition and subtraction (given in the lecture notes).
-  • Multiplication: we can define this using addition. To multiply two Nats,
-  n and m, add m to itself n times.
-  • negate, which negates a Nat. The negation of Z is Z. There are no negative
-  Peano numbers, so negating one which is not zero should return an error.
-  • signum, which returns the sign of a number. For “ordinary” numbers,
-  signum returns -1 for negative numbers, 0 for zero and 1 for positive
-  numbers. Yours should do the same, except that you only need to consider
-  zero and positive numbers.
-  • abs, which returns the absolute value of a number. Since there are no
-  negative Peano numbers, you should just return the number itself.
-  • fromInteger, which converts an Integer to a Nat.-}
+  - Addition and subtraction (given in the lecture notes). 
+  - Multiplication: we can define this using addition. To multiply two Nats, 
+    n and m, add m to itself n times. 
+  - negate, which negates a Nat. The negation of Z is Z. There are no negative 
+    Peano numbers, so negating one which is not zero should return an error. 
+  - signum, which returns the sign of a number. For "ordinary" numbers, 
+    signum returns -1 for negative numbers, 0 for zero and 1 for positive 
+    numbers. Yours should do the same, except that you only need to consider 
+    zero and positive numbers. 
+  - abs, which returns the absolute value of a number. Since there are no
+    negative Peano numbers, you should just return the number itself.
+  - fromInteger, which converts an Integer to a Nat.-}
 
 data Nat = Z | S Nat deriving (Show)
 

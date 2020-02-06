@@ -29,7 +29,7 @@ memb (x:xs) y
   | x == y    = True
   | otherwise = memb xs y
 
-{-3. Write a (recursive) function length’ :: [a] -> Int which calculates
+{-3. Write a (recursive) function length' :: [a] -> Int which calculates
   the length of a list. Think about the base case of the empty list and the
   case when the list contains elements.
 -}
@@ -39,7 +39,7 @@ length' xs = go xs 0
     go [] n = n
     go (_:xs) n = go xs (1+n)
 
-{-4. Write a function drop’ :: Int -> [a] -> [a], where drop’ n xs returns xs
+{-4. Write a function drop' :: Int -> [a] -> [a], where drop' n xs returns xs
  with its first n elements removed.-}
 drop' :: Int -> [a] -> [a]
 drop' n xs 
@@ -50,7 +50,7 @@ drop' n xs
     go 1 (_:xs) = xs 
     go n (_:xs) = go (n-1) xs
 
-{-5. Write a function take’ :: Int -> [a] -> [a], where take’ n xs returns 
+{-5. Write a function take' :: Int -> [a] -> [a], where take' n xs returns 
   the first n elements of xs as a list (if xs contains less than n elements,
   your function should return all of xs).-}
 take' :: Int -> [a] -> [a] 
