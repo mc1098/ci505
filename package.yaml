@@ -1,6 +1,6 @@
 name:                ci505
 version:             0.1.0.0
-github:              "githubuser/ci505"
+github:              "mc1098/ci505"
 license:             BSD3
 author:              "Author name here"
 maintainer:          "example@example.com"
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/ci505#readme>
+description:         Please see the README on GitHub at <https://github.com/mc1098/ci505#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -34,8 +34,6 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
-    dependencies:
-    - ci505
 
 tests:
   ci505-test:
@@ -45,5 +43,3 @@ tests:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
-    dependencies:
-    - ci505
