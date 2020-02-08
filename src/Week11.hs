@@ -1,9 +1,10 @@
 module Week11 where
 
 
-
-import System.Random 
-import Text.Read 
+import System.Environment
+import System.Random
+import Text.Read
+import Control.Monad
 
 
 {-1. Run the following code then transform it to use monadic style instead of
@@ -18,13 +19,13 @@ tenChars = take 10 cs
 putStrLn tenChars-}
 
 
-randomChars :: RandomGen g => g -> String 
-randomChars = randomRs ('a', 'z') 
+randomChars :: RandomGen g => g -> String
+randomChars = randomRs ('a', 'z')
 
-week11 :: IO () 
-week11 = do 
+week11 :: IO ()
+week11 = do
     g <- newStdGen
-    (putStrLn . take 10) $ randomChars g 
+    (putStrLn . take 10) $ randomChars g
 
 
 {-2. Given a Coin datatype, generate an infinite sequence of random coin
@@ -40,14 +41,14 @@ to stop its evaluation.)-}
 
 data Coin = Head | Tail deriving (Show, Eq)
 
-floatCoin :: Float -> Coin 
-floatCoin f 
-    | f < 0.5   = Head 
+floatCoin :: Float -> Coin
+floatCoin f
+    | f < 0.5   = Head
     | otherwise = Tail
 
 
 randomCoins :: RandomGen g => g -> [Coin]
-randomCoins gen = floatCoin <$> randomRs (0, 1) gen 
+randomCoins gen = floatCoin <$> randomRs (0, 1) gen
 
 
 {-3. Create a function which calculates the percentage (as a whole number) of
@@ -59,9 +60,9 @@ number to whole numbers and vice versa.)-}
 
 pcHeads :: [Coin] -> (Int, Int)
 pcHeads = foldl go (0,0)
-    where 
+    where
         go (total, heads) Head = (total+1, heads + 1)
-        go (total, heads) Tail = (total+1, heads) 
+        go (total, heads) Tail = (total+1, heads)
 
 
 {-4. Create a function called display which takes the output from pcHeads
@@ -69,8 +70,8 @@ and prints a string to the terminal. For example,
 > display (10, 50)
 "Looked at 10 coins and 50% of them were heads."-}
 
-display :: (Int, Int) -> IO () 
-display = print 
+display :: (Int, Int) -> IO ()
+display = print
 
 {-5. Create a main function which reads in a number from the command line,
 say n, then generates a list of n random coin tosses and prints out a message to the 
@@ -86,4 +87,20 @@ Test your code in the interpreter using the special syntax to supply arguments t
  e.g. :main 100. Write your main function
 using a do block first of all, then transform it to use monadic and/or
 applicative style.-}
+
+headMaybe :: [a] -> Maybe a
+headMaybe []      = Nothing 
+headMaybe (x:_)   = Just x 
+
+
+main :: IO ()
+main = do 
+    gen <- getStdGen 
+    s   <- getArgs 
+    go gen $ headMaybe s 
+    where 
+        go gen Nothing  = return ()
+        go gen (Just s) = case readMaybe s of 
+            Nothing     -> return () 
+            (Just n)    -> (print . snd . pcHeads . take n) $ randomCoins gen 
 
